@@ -1,0 +1,32 @@
+node_modules
+.next
+.env.local
+.vercel
+
+# dependencies
+node_modules
+
+# Next.js
+.next
+out
+
+# production
+build
+
+# environment variables
+.env
+.env.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+.vercel
+
+public/videos/*.mp4
