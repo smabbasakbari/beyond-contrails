@@ -2,28 +2,27 @@ export interface BlogPost {
   slug: string;
 
   title: string;
-
   date: string;
-
   author: string;
 
+  cover: string;
   excerpt: string;
 
   aircraft: string;
-
   airline: string;
 
   departure: string;
-
   arrival: string;
 
-  flightTime: string;
+  flighttime: string;
 
-  featured: boolean;
+  gallery: string[];
 
-  draft?: boolean;
+  youtubeUrl?: string;
 
   tags: string[];
 
-  cover: string;
+  featured: boolean;
+
+  content: string;
 }

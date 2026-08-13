@@ -1,10 +1,9 @@
 import Image from "next/image";
 
-import { FlightReport } from "@/types/flightreport";
-import { urlFor } from "@/lib/sanity/image";
+import { BlogPost } from "@/types/blog";
 
 interface Props {
-  report: FlightReport;
+  report: BlogPost;
 }
 
 export default function FlightReportHero({ report }: Props) {
@@ -12,17 +11,15 @@ export default function FlightReportHero({ report }: Props) {
     <section className="relative h-[80vh] overflow-hidden">
 
       <Image
-        src={urlFor(report.heroImage).width(2400).url()}
+        src={report.cover}
         alt={report.title}
         fill
         priority
         className="object-cover"
       />
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-linear-to-b from-black/50 via-black/45 to-[#06070A]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/45 to-[#06070A]" />
 
-      {/* Content */}
       <div className="absolute inset-0 flex items-center justify-center">
 
         <div className="mx-auto max-w-5xl px-6 text-center">
@@ -35,7 +32,7 @@ export default function FlightReportHero({ report }: Props) {
             {report.title}
           </h1>
 
-          <div className="mt-8 flex items-center justify-center gap-4 text-lg text-gray-300">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-lg text-gray-300">
 
             <span>{report.airline}</span>
 
@@ -45,12 +42,12 @@ export default function FlightReportHero({ report }: Props) {
 
             <span className="text-sky-400">•</span>
 
-            <span>{report.flightTime}</span>
+            <span>{report.flighttime}</span>
 
           </div>
 
           <p className="mt-8 text-sm uppercase tracking-[0.25em] text-gray-400">
-            {new Date(report.publishedAt).toLocaleDateString("en-GB")}
+            {new Date(report.date).toLocaleDateString("en-GB")}
           </p>
 
         </div>

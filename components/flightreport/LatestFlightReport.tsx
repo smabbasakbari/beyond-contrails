@@ -1,16 +1,11 @@
 import Section from "@/components/ui/Section";
 import SectionHeading from "@/components/ui/SectionHeading";
-import BlogCard from "./FlightReportCard";
+import FlightReportCard from "./FlightReportCard";
 
-import { client } from "@/lib/sanity/client";
-import { latestFlightReportQuery } from "@/lib/sanity/queries";
+import { getFeaturedPost } from "@/lib/blog";
 
-import { FlightReport } from "@/types/flightreport";
-
-export default async function LatestFlightReport() {
-  const post = await client.fetch<FlightReport | null>(
-    latestFlightReportQuery
-  );
+export default function LatestFlightReport() {
+  const post = getFeaturedPost();
 
   if (!post) {
     return null;
@@ -21,12 +16,12 @@ export default async function LatestFlightReport() {
 
       <SectionHeading
         eyebrow="FEATURED FLIGHT"
-        title="Latest Flight Report"
+        title="Featured Flight Report"
         description="Read my latest journey through Microsoft Flight Simulator."
       />
 
       <div className="mt-16">
-        <BlogCard post={post} />
+        <FlightReportCard post={post} />
       </div>
 
     </Section>

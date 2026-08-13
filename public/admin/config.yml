@@ -1,0 +1,96 @@
+backend:
+  name: github
+  repo: smabbasakbari/beyond-contrails
+  branch: main
+
+  base_url: https://beyond-contrails-cms-authenticator.vercel.app
+  auth_endpoint: api/begin
+
+  site_domain: beyondcontrails.com
+
+media_folder: "public/blog"
+public_folder: "/blog"
+
+collections:
+  - name: "flight_reports"
+    label: "Flight Reports"
+    folder: "content/blog"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{slug}}"
+
+    fields:
+
+      - label: "Title"
+        name: "title"
+        widget: "string"
+
+      - label: "Published Date"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+
+      - label: "Author"
+        name: "author"
+        widget: "string"
+        default: "Beyond Contrails"
+
+      - label: "Hero Image"
+        name: "cover"
+        widget: "image"
+        required: true
+
+      - label: "Excerpt"
+        name: "excerpt"
+        widget: "text"
+
+      - label: "Airline"
+        name: "airline"
+        widget: "string"
+
+      - label: "Aircraft"
+        name: "aircraft"
+        widget: "string"
+
+      - label: "Departure ICAO"
+        name: "departure"
+        widget: "string"
+        hint: "Four-letter ICAO airport code, e.g. EDDF"
+
+      - label: "Arrival ICAO"
+        name: "arrival"
+        widget: "string"
+        hint: "Four-letter ICAO airport code, e.g. OERK"
+
+      - label: "Flight Time"
+        name: "flighttime"
+        widget: "string"
+
+      - label: "YouTube URL"
+        name: "youtubeUrl"
+        widget: "string"
+        required: false
+
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        required: false
+        field:
+          label: "Image"
+          name: "image"
+          widget: "image"
+
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+
+      - label: "Featured Flight"
+        name: "featured"
+        widget: "boolean"
+        default: false
+
+      - label: "Flight Report"
+        name: "body"
+        widget: "markdown"

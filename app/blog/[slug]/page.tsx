@@ -1,8 +1,7 @@
+import { notFound } from "next/navigation";
+
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-
-import { client } from "@/lib/sanity/client";
-import { flightReportBySlugQuery } from "@/lib/sanity/queries";
 
 import FlightReportHero from "@/components/flightreport/FlightReportHero";
 import FlightReportDetails from "@/components/flightreport/FlightReportDetails";
@@ -11,27 +10,30 @@ import FlightReportGallery from "@/components/flightreport/FlightReportGallery";
 import FlightReportTags from "@/components/flightreport/FlightReportTags";
 import YouTubeEmbed from "@/components/flightreport/YouTubeEmbed";
 
+import { getPostBySlug } from "@/lib/blog";
+
+interface PageProps {
+  params: Promise<{
+    slug: string;
+  }>;
+}
+
 export default async function FlightReportPage({
   params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+}: PageProps) {
   const { slug } = await params;
 
-  const report = await client.fetch(
-    flightReportBySlugQuery,
-    { slug }
-  );
+  const report = getPostBySlug(slug);
 
   if (!report) {
-    return <div>Flight Report not found.</div>;
+    notFound();
   }
 
   return (
     <>
       <Navbar />
 
-      <main className="bg-[#06070A] text-white">
+      <main className="min-h-screen bg-[#06070A] text-white">
 
         <FlightReportHero report={report} />
 
