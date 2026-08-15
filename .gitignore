@@ -23,6 +23,3 @@ pnpm-debug.log*
 # Windows
 Thumbs.db
 .vercel
-
-# Large video files
-public/videos/
