@@ -1,19 +1,34 @@
-import fg from "fast-glob";
+import fs from "fs";
+import path from "path";
+import { load } from "js-yaml";
 
 export interface GalleryImage {
   src: string;
   title: string;
+  aircraft?: string;
+  location?: string;
+  date?: string;
+  caption?: string;
 }
 
-export async function getGalleryImages(): Promise<GalleryImage[]> {
-  const files = await fg("public/gallery/*.{jpg,jpeg,png,webp}");
+interface GalleryData {
+  images?: GalleryImage[];
+}
 
-  return files.map((file) => ({
-    src: file.replace("public", ""),
-    title: file
-      .split("/")
-      .pop()!
-      .replace(/\.[^/.]+$/, "")
-      .replace(/-/g, " "),
-  }));
+export function getGalleryImages(): GalleryImage[] {
+  const filePath = path.join(
+    process.cwd(),
+    "content",
+    "gallery.yml"
+  );
+
+  if (!fs.existsSync(filePath)) {
+    return [];
+  }
+
+  const file = fs.readFileSync(filePath, "utf8");
+
+  const data = load(file) as GalleryData;
+
+  return data.images ?? [];
 }

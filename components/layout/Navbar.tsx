@@ -11,7 +11,14 @@ const links = [
   { name: "Flights", href: "/flights" },
   { name: "Videos", href: "/videos" },
   { name: "Flight Reports", href: "/blog" },
-  { name: "About", href: "/about" },
+];
+
+const aboutLinks = [
+  { name: "The Idea", href: "/about#idea" },
+  { name: "The Journey", href: "/about#journey" },
+  { name: "The Platform", href: "/about#platform" },
+  { name: "The Flight Deck", href: "/about#flight-deck" },
+  { name: "The Community", href: "/about#community" },
 ];
 
 export default function Navbar() {
@@ -66,20 +73,60 @@ export default function Navbar() {
 
           
 
-          {links.map((link) => (
+      {links.map((link) => (
+        <Link
+          key={link.name}
+          href={link.href}
+          className="group relative text-sm tracking-wide text-white/80 transition hover:text-white"
+        >
+          {link.name}
 
-          <Link
-            key={link.name}
-            href={link.href}
-              className="group relative text-sm tracking-wide text-white/80 transition hover:text-white"
-            >
-              {link.name}
+          <span className="absolute -bottom-2 left-1/2 h-px w-0 -translate-x-1/2 bg-sky-400 transition-all duration-300 group-hover:w-full" />
+        </Link>
+      ))}
 
-              <span className="absolute -bottom-2 left-1/2 h-px w-0 -translate-x-1/2 bg-sky-400 transition-all duration-300 group-hover:w-full" />
+      {/* About dropdown */}
+      <div className="group relative">
+        {/* About link */}
+        <Link
+          href="/about"
+          className="relative flex items-center gap-1 text-sm tracking-wide text-white/80 transition hover:text-white"
+        >
+          <span>About</span>
 
-            </Link>
+          <svg
+            className="h-3 w-3 transition-transform duration-300 group-hover:rotate-180"
+            viewBox="0 0 12 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2.5 4.5L6 8L9.5 4.5"
+              stroke="currentColor"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
 
-          ))}
+          <span className="absolute -bottom-2 left-1/2 h-px w-0 -translate-x-1/2 bg-sky-400 transition-all duration-300 group-hover:w-full" />
+        </Link>
+
+        {/* Dropdown */}
+        <div className="pointer-events-none absolute right-0 top-full pt-4 opacity-0 transition-all duration-300 group-hover:pointer-events-auto group-hover:opacity-100">
+          <div className="w-56 overflow-hidden rounded-xl border border-white/10 bg-[#080A0E]/95 p-2 shadow-2xl backdrop-blur-2xl">
+            {aboutLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="block rounded-lg px-4 py-3 text-sm text-white/60 transition-all duration-200 hover:bg-white/[0.06] hover:text-white"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
 
         </div>
 

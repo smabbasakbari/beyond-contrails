@@ -12,6 +12,11 @@ media_folder: "public/blog"
 public_folder: "/blog"
 
 collections:
+
+  # =========================================================
+  # FLIGHT REPORTS
+  # =========================================================
+
   - name: "flight_reports"
     label: "Flight Reports"
     folder: "content/blog"
@@ -94,3 +99,56 @@ collections:
       - label: "Flight Report"
         name: "body"
         widget: "markdown"
+
+
+  # =========================================================
+  # GALLERY
+  # =========================================================
+
+  - name: "gallery"
+    label: "Gallery"
+
+    files:
+
+      - name: "gallery"
+        label: "Gallery"
+        file: "content/gallery.yml"
+
+        fields:
+
+          - label: "Images"
+            name: "images"
+            widget: "list"
+
+            fields:
+
+              - label: "Image"
+                name: "image"
+                widget: "image"
+                media_folder: "/public/gallery"
+                public_folder: "/gallery"
+
+              - label: "Title"
+                name: "title"
+                widget: "string"
+
+              - label: "Aircraft"
+                name: "aircraft"
+                widget: "string"
+                required: false
+
+              - label: "Location"
+                name: "location"
+                widget: "string"
+                required: false
+
+              - label: "Date"
+                name: "date"
+                widget: "datetime"
+                format: "YYYY-MM-DD"
+                required: false
+
+              - label: "Caption"
+                name: "caption"
+                widget: "text"
+                required: false
