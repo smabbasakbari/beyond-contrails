@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 
 interface SmoothScrollProps {
@@ -10,6 +11,8 @@ interface SmoothScrollProps {
 export default function SmoothScroll({
   children,
 }: SmoothScrollProps) {
+  const pathname = usePathname();
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -27,6 +30,14 @@ export default function SmoothScroll({
       lenis.destroy();
     };
   }, []);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, [pathname]);
 
   return <>{children}</>;
 }
