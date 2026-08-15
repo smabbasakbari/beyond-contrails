@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: "Beyond Contrails | Flight Simulation & Aviation",
     description:
       "Flight simulation, aviation, cinematic flights, flight reports and more.",
-    images: ["/images/og-image.png"],
+    images: ["/images/og-image.jpg"],
   },
 };
 
