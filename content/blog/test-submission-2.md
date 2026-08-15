@@ -1,5 +1,5 @@
 ---
-title: Test Submission 2
+title: "Riyadh Air RX659: Riyadh to Islamabad"
 date: 2026-08-15
 author: Beyond Contrails
 cover: /blog/rxi659-thumbnail.png
