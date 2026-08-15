@@ -10,7 +10,7 @@ export default function YouTubeEmbed({ report }: Props) {
   }
 
   const match = report.youtubeUrl.match(
-    /(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/embed\/)([^?&/]+)/
+  /(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/embed\/|youtube\.com\/live\/)([^?&/]+)/
   );
 
   if (!match) {
