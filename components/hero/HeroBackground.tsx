@@ -10,7 +10,7 @@ export default function HeroBackground() {
         preload="auto"
         className="absolute inset-0 h-full w-full object-cover"
         >
-        <source src="/videos/hero_a350.mp4" type="video/mp4" />
+        <source src="/videos/hero.mp4" type="video/mp4" />
      </video>
 
       {/* Dark Overlay */}
