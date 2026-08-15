@@ -184,11 +184,11 @@ function Scene({
 
       {/* Lighting */}
 
-      <ambientLight intensity={0.1} />
+      <ambientLight intensity={0.0} />
 
       <directionalLight
         position={[-10, 5, 45]}
-        intensity={1.5}
+        intensity={0.5}
       />
 
       <directionalLight
@@ -202,20 +202,10 @@ function Scene({
 
       {/* Background */}
 
-      <color
-        attach="background"
-        args={["#06070A"]}
-      />
-
-
-      <fog
+      <fogExp2
         attach="fog"
-        args={[
-          "#06070A",
-          70,
-          220,
-        ]}
-      />
+        args={["#0E2841", 0.014]}
+        />
 
 
       {/* Runway */}
@@ -340,26 +330,75 @@ export default function TakeoffScene() {
             }}
             >
 
-        <Canvas
-        dpr={[1, 1.5]}
-        gl={{
-            antialias: true,
-            powerPreference: "high-performance",
+        {/* Sky photograph */}
+        <div
+        className="
+            absolute
+            inset-0
+            z-0
+            bg-bottom
+            bg-no-repeat
+        "
+        style={{
+            backgroundImage: "url('/images/sky.jpg')",
+            backgroundSize: `${150 - progress * 40}%`,
         }}
-        >
-        <Scene progress={progress} />
+        />
 
-        <EffectComposer>
+        {/* Dark atmospheric overlay */}
+        <div
+            className="
+            pointer-events-none
+            absolute
+            inset-0
+            z-1
+            bg-[#071B30]/45
+            "
+        />
+
+        {/* Darker horizon / runway transition */}
+        <div
+            className="
+            pointer-events-none
+            absolute
+            inset-x-0
+            bottom-0
+            z-2
+            h-[45%]
+            bg-linear-to-t
+            from-[#080b0f]
+            via-[#071B30]/30
+            to-transparent
+            "
+        />
+
+        {/* 3D scene */}
+        <div className="absolute inset-0 z-10">
+            <Canvas
+            dpr={[1, 1.5]}
+            shadows
+            gl={{
+                antialias: true,
+                alpha: true,
+                powerPreference: "high-performance",
+            }}
+            >
+            <Scene progress={progress} />
+            
+            <EffectComposer>
             <Bloom
             intensity={1.4}
             luminanceThreshold={0.8}
             luminanceSmoothing={5.0}
             mipmapBlur
             />
-        </EffectComposer>
-        </Canvas>
+            </EffectComposer>
+
+            </Canvas>
+        </div>
 
 
+        {/* Scroll indicator */}
         <div
         className="
             pointer-events-none
